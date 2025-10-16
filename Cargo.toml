@@ -1,0 +1,24 @@
+[package]
+name = "rf"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+opt-level = 's'
+
+[dependencies]
+js-sys = "0"
+wasm-bindgen = "0"
+
+[dependencies.web-sys]
+version = "0"
+features = [
+  'console',
+  'Document',
+  'HtmlTextAreaElement',
+  'Window',
+]
