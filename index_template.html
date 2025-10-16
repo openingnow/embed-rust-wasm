@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>wasm-embed</title>
+</head>
+
+<body>
+	<script type="module">
+		`GLUE-JS`;
+		const compressed = new Blob([new Uint8Array(Array.from(atob('GZIP-BASE64'), c => c.charCodeAt(0)))], { type: 'application/gzip' });
+		const decompressed = await new Response(compressed.stream().pipeThrough(new DecompressionStream('gzip'))).blob();
+		__wbg_init(new Uint8Array(await decompressed.arrayBuffer()));
+	</script>
+</body>
+
+</html>
